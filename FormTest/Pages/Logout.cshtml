@@ -1,0 +1,22 @@
+@page
+@model FormTest.Pages.Logout
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Log in</title>
+</head>
+<body>
+<div>
+    <form method="post" asp-page="Logout">
+            @Html.AntiForgeryToken()
+        <button type="submit">Log out</button>
+    </form>
+</div>
+</body>
+</html>

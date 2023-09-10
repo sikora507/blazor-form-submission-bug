@@ -1,0 +1,51 @@
+@page "/FormTest"
+<h3>FormTest</h3>
+<EditForm Model="@ContactModel" method="post" OnValidSubmit="HandleValidSubmit" FormName="Contact" class="w-100">
+    <DataAnnotationsValidator/>
+    <div class="form-group row mb-2">
+        <label for="inline-full-name" class="col-md-2 col-form-label">Full Name:</label>
+        <div class="col-md-10">
+            <InputText @bind-Value="ContactModel.FullName" Id="inline-full-name" Type="text" class="form-control"/>
+            <ValidationMessage For="@(() => ContactModel.FullName)"/>
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        <label for="inline-email" class="col-md-2 col-form-label">Email:</label>
+        <div class="col-md-10">
+            <InputText @bind-Value="ContactModel.Email" Id="inline-email" Type="email" class="form-control"/>
+            <ValidationMessage For="@(() => ContactModel.Email)"/>
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        <label for="inline-message" class="col-md-2 col-form-label">Message:</label>
+        <div class="col-md-10">
+            <InputTextArea @bind-Value="ContactModel.Message" Id="inline-message" class="form-control"/>
+            <ValidationMessage For="@(() => ContactModel.Message)"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <button class="btn btn-primary" type="submit">
+                Submit
+            </button>
+        </div>
+    </div>
+</EditForm>
+
+@if (!string.IsNullOrWhiteSpace(Submitted))
+{
+    <p>You submitted: @Submitted</p>    
+}
+
+@code {
+    [SupplyParameterFromForm]
+    private ContactModel ContactModel { get; set; } = new();
+    
+    private string Submitted { get; set; }
+
+    private void HandleValidSubmit()
+    {
+        Submitted = $"{ContactModel.Email} {ContactModel.FullName} {ContactModel.Message}";
+    }
+}

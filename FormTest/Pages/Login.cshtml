@@ -1,0 +1,22 @@
+@page
+@model FormTest.Pages.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Log in</title>
+</head>
+<body>
+<div>
+    <form method="post" asp-page="Login">
+        @Html.AntiForgeryToken()
+        <button type="submit">Log in using cookies</button>
+    </form>
+</div>
+</body>
+</html>
