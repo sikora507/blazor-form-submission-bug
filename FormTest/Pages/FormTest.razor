@@ -1,4 +1,6 @@
 @page "/FormTest"
+@using Microsoft.AspNetCore.Antiforgery;
+@attribute [RequireAntiforgeryToken]
 <h3>FormTest</h3>
 <EditForm Model="@ContactModel" method="post" OnValidSubmit="HandleValidSubmit" FormName="Contact" class="w-100">
     <DataAnnotationsValidator/>
